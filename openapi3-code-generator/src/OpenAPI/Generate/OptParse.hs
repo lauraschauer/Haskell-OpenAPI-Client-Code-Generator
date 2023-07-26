@@ -22,8 +22,8 @@ import OpenAPI.Generate.OptParse.Flags
 import OpenAPI.Generate.OptParse.Types
 import Options.Applicative
 import Options.Applicative.Help (string)
+import Path
 import Path.IO
-import Path.Posix
 import System.Exit
 
 getSettings :: IO Settings
@@ -174,7 +174,8 @@ flagsParser :: ParserInfo Flags
 flagsParser =
   info
     (helper <*> parseFlags)
-    ( fullDesc <> footerDoc (Just $ string footerStr)
+    ( fullDesc
+        <> footerDoc (Just $ string footerStr)
         <> progDesc "This tool can be used to generate Haskell code from OpenAPI 3 specifications. For more information see https://github.com/Haskell-OpenAPI-Code-Generator/Haskell-OpenAPI-Client-Code-Generator."
         <> header "Generate Haskell code from OpenAPI 3 specifications"
     )
